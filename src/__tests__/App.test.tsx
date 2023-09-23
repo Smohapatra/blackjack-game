@@ -1,10 +1,9 @@
 // Imports
-import React from 'react';
 import { describe, it, expect } from 'vitest';
 import { render } from '@testing-library/react';
 
 // To Test
-import App from '../App';
+import App from '../components/App';
 
 // Tests
 describe('Renders main page correctly', async () => {
