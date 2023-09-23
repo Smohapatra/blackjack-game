@@ -1,9 +1,13 @@
+import { useGameContext } from '../contexts/gameContext';
+
 interface GameEndWrapperProps {
-    gameOverMessage: string;
     startNewGame: () => void;
 }
 
-export const GameEndWrapper: React.FC<GameEndWrapperProps> = ({ gameOverMessage, startNewGame }) => {
+export const GameEndWrapper: React.FC<GameEndWrapperProps> = ({ startNewGame }) => {
+    const { state } = useGameContext();
+    const { gameOverMessage } = state;
+
     return !!gameOverMessage && (
         <div>
             <h2>Game Over. {gameOverMessage}</h2>

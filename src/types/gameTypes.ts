@@ -5,12 +5,6 @@ export type Card = {
     code: string;
 }
 
-export interface CardsProps {
-    user: string;
-    cards: Card[];
-    score: number;
-}
-
 export type GameState = {
     deckId: string,
     playerCards: Card[],

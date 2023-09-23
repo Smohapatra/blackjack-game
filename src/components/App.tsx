@@ -1,15 +1,14 @@
-import { useReducer, useEffect } from 'react';
-import { initialGameState, appReducer } from '../reducers/gameReducer';
+import { useEffect } from 'react';
 import { evalauateGameState } from '../utils/gameUtils';
-import { useGameSetup, useGameActions } from '../hooks';
+import { useGameSetup } from '../hooks';
+import { useGameContext, GameContextProvider } from '../contexts/gameContext';
 import { Cards, ActionButtons, GameEndWrapper }  from './';
 import '../App.css';
 
-function App() {
-  const [state, dispatch] = useReducer(appReducer, initialGameState);
-  const { playerCards, dealerCards, playerScore, dealerScore, gameOverMessage, gameLoading, deckId, playerHasStayed } = state;
+function AppContent() {
+  const { state, dispatch } = useGameContext();
+  const { playerScore, dealerScore, gameLoading, deckId, playerHasStayed } = state;
   const { drawInitialCards, startNewGame } = useGameSetup(dispatch);
-  const { handleStay, handleHit } = useGameActions(state, dispatch);
 
   useEffect(() => {
     startNewGame();
@@ -32,14 +31,22 @@ function App() {
         <h1>Blackjack Game</h1>
         {gameLoading ? <h3>Loading...</h3> : (
         <>
-          <Cards user='Dealer' cards={dealerCards} score={ dealerScore } />
-          <Cards user='Player' cards={playerCards} score={ playerScore } />
-          <ActionButtons handleStay={handleStay} handleHit={handleHit} gameOverMessage={gameOverMessage} />
+          <Cards user='Dealer' />
+          <Cards user='Player' />
+          <ActionButtons />
         </>
         )}
       </div>
-      <GameEndWrapper gameOverMessage={gameOverMessage} startNewGame={startNewGame}/>
+      <GameEndWrapper startNewGame={startNewGame}/>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <GameContextProvider>
+      <AppContent />
+    </GameContextProvider>
   );
 }
 

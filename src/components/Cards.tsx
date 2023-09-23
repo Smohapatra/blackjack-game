@@ -1,8 +1,24 @@
-import { CardsProps } from '../types/gameTypes';
+import { useGameContext } from '../contexts/gameContext';
 
 const BACK_CARD = 'https://deckofcardsapi.com/static/img/back.png';
 
-export const Cards: React.FC<CardsProps> = ({ user, cards, score }) => {
+interface CardsProps {
+    user: string;
+}
+
+export const Cards: React.FC<CardsProps> = ({ user }) => {
+    const { state } = useGameContext();
+
+    let cards = [];
+    let score = 0;
+    if (user === 'Player') {
+        cards = state.playerCards;
+        score = state.playerScore;
+    } else {
+        cards = state.dealerCards;
+        score = state.dealerScore;
+    }
+
     return (
         <div className='m-10 space-y-3'>
             <h2 className='text-2xl font-bold'>{user}</h2>
