@@ -22,6 +22,8 @@ export type GameState = {
     gameLoading: boolean
 };
 
+export type GameDispatch = React.Dispatch<GameAction>;
+
 export type GameAction = 
     | { type: 'SET_DECK_ID', newDeckId: string }
     | { type: 'SET_PLAYER_CARDS', playerCards: Card[] }
