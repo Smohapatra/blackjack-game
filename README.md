@@ -1,6 +1,6 @@
 # Blackjack Game
 
-A simple working application of Blackjack Game using `ReactJS`, `Typescript`, `TailwindCSS`, `Tanstack Query` etc.
+A simple working application of Blackjack Game using `ReactJS`, `Typescript`, `TailwindCSS` etc.
 
 Render of the cards is done by using the [Deck of Cards API](https://deckofcardsapi.com/)
 
